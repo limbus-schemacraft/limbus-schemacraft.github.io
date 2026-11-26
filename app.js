@@ -20,6 +20,7 @@ const costButtons = document.querySelector('#cost-buttons');
 const resetButton = document.querySelector('#reset');
 const searchInput = document.querySelector('#identity-search');
 const clearSearchButton = document.querySelector('#clear-search');
+const siteMenu = document.querySelector('#site-menu');
 const results = document.querySelector('#results');
 const resultCount = document.querySelector('#result-count');
 const details = document.querySelector('#details');
@@ -140,6 +141,15 @@ clearSearchButton.addEventListener('click', () => {
   searchInput.value = '';
   searchInput.focus();
   renderResults();
+});
+
+document.addEventListener('click', event => {
+  if (siteMenu.open && !siteMenu.contains(event.target)) siteMenu.open = false;
+});
+siteMenu.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || !siteMenu.open) return;
+  siteMenu.open = false;
+  siteMenu.querySelector('summary').focus();
 });
 
 function cancelPress() {

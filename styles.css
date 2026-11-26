@@ -20,6 +20,7 @@ h1, h2, h3, p { margin: 0; }
 
 .page { width: min(100% - 3rem, 70rem); margin-inline: auto; }
 .intro {
+  position: relative;
   padding-block: clamp(2.7rem, 7vw, 5rem) 1.75rem;
   background: radial-gradient(ellipse at 5% 0%, #273834 0%, transparent 70%);
 }
@@ -31,6 +32,48 @@ h1, h2, h3, p { margin: 0; }
   letter-spacing: -0.055em;
 }
 .intro > p:last-child { color: var(--muted); }
+
+.site-menu {
+  position: absolute;
+  z-index: 2;
+  inset-block-start: clamp(0.75rem, 3vw, 1.5rem);
+  inset-inline-end: 0;
+}
+.site-menu summary {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--panel);
+  cursor: pointer;
+  list-style: none;
+}
+.site-menu summary::-webkit-details-marker { display: none; }
+.hamburger-icon {
+  display: grid;
+  align-items: center;
+  width: 1.125rem;
+  height: 0.875rem;
+  border-block: 2px solid currentColor;
+}
+.hamburger-icon::before { content: ""; height: 2px; background: currentColor; }
+.site-menu[open] summary { color: var(--accent); border-color: #81988e; }
+.site-menu-panel {
+  position: absolute;
+  inset-block-start: calc(100% + 0.5rem);
+  inset-inline-end: 0;
+  width: min(21rem, 100vw - 3rem);
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: #242d2a;
+  box-shadow: 0 0.75rem 2rem #0006;
+}
+.site-menu-panel h2 { font-size: 1.125rem; }
+.site-menu-panel p { margin-block-start: 0.55rem; }
+.site-menu-panel .site-version { color: var(--accent); font-size: 0.875rem; font-weight: 700; }
 
 .filters {
   padding: clamp(1rem, 2.5vw, 1.5rem);
@@ -233,6 +276,7 @@ dialog::backdrop { background: #101514bf; }
 #no-affiliations { color: var(--muted); }
 
 @media (hover: hover) {
+  .site-menu summary:hover { border-color: #81988e; background: #2d3934; }
   .filter-button[aria-pressed="false"]:hover { border-color: var(--tone); }
   .identity:hover, .reset:not(:disabled):hover, .close:hover {
     border-color: #81988e;
